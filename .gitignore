@@ -122,4 +122,12 @@ dmypy.json
 *.swp
 .DS_Store
 .idea
+
+# Terraform local state (including secrets in backend configuration)
+terraform.tfstate*
+.terraform.*
+terraform.*.backup
+
+# Ansible retry-files
+*.retry
 #
