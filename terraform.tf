@@ -59,4 +59,6 @@ output "instance_ips" {
   value = ["${aws_instance.test-instance.*.public_ip}"]
 }
 
-
+output "address" {
+  value = "${aws_elb.test-lb.dns_name}"
+}
