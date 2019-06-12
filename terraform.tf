@@ -29,7 +29,7 @@ resource "aws_instance" "test-instance" {
 resource "aws_elb" "test-lb" {
   name    = "test-lb"
   availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  instances       = ["${aws_instance.ants-instance.*.id}"]
+  instances       = ["${aws_instance.test-instance.*.id}"]
 
   health_check {
     healthy_threshold = 2
