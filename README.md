@@ -37,7 +37,7 @@
     │   |     └── main.yml
     │   └── group_vars
     │   | └── all
-    │   |   └── vault   # stores encrypted Ansible secrets
+    │   |   └── vault   *stores encrypted Ansible variables*
     │   └── main.yml
     │
     └──{main|outputs|terraform|vars}.tf

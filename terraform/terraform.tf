@@ -2,11 +2,11 @@
 provider "aws" {}
 
 
-resource "aws_instance" "test-instance" {
+resource "aws_instance" "iac-instance" {
   count = 3
   ami           = "ami-2757f631"
   instance_type = "t2.micro"
-  #key_name = "iac-test"
+  key_name = "iac-test"
 
   provisioner "remote-exec" {
     inline = [
@@ -24,12 +24,48 @@ resource "aws_instance" "test-instance" {
 }
 
 
+#________________________________elb security group stuff____________
+
+resource "aws_security_group" "iac_elb" {
+  name = "iac_elb"
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port =443
+    to_port =443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
 #           ____________________  Load Balancer stuff _____________
 
-resource "aws_elb" "test-lb" {
-  name    = "test-lb"
+resource "aws_elb" "iac-lb" {
+  name    = "iac-lb"
   availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  instances       = ["${aws_instance.test-instance.*.id}"]
+  instances       = ["${aws_instance.iac-instance.*.id}"]
 
   health_check {
     healthy_threshold = 2
@@ -56,9 +92,11 @@ resource "aws_elb" "test-lb" {
 
 
 output "instance_ips" {
-  value = ["${aws_instance.test-instance.*.public_ip}"]
+  value = ["${aws_instance.iac-instance.*.public_ip}"]
 }
 
 output "address" {
-  value = "${aws_elb.test-lb.dns_name}"
+  value = "${aws_elb.iac-lb.dns_name}"
 }
+
+
