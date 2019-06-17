@@ -126,6 +126,7 @@ dmypy.json
 # Terraform local state (including secrets in backend configuration)
 terraform.tfstate*
 .terraform/*
+.terraform/
 terraform.*.backup
 
 # Ansible retry-files

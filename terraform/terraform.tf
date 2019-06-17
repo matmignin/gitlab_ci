@@ -1,17 +1,21 @@
 # AWS Provider
-provider "aws" {}
+provider "aws" {
+  region = "us-east-2"
+}
+
 
 
 resource "aws_instance" "iac-instance" {
-  count = 3
-  ami           = "ami-2757f631"
+  count = 1
+  ami           = "ami-0f65671a86f061fcd"
   instance_type = "t2.micro"
   key_name = "iac-test"
 
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get -y update",
-      "sudo apt-get install -y python",
+      "sudo apt-get install -y python3",
+      "sudo mkdir new_folder",
     ]
     connection {
         type = "ssh"
@@ -19,52 +23,15 @@ resource "aws_instance" "iac-instance" {
     }
   }
   tags {
-    Name = "test-${count.index}"
+    Name = "iac-${count.index}"
   }
 }
 
-
-#________________________________elb security group stuff____________
-
-resource "aws_security_group" "iac_elb" {
-  name = "iac_elb"
-
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port =443
-    to_port =443
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-
-#           ____________________  Load Balancer stuff _____________
+#   __________________  Load Balancer stuff _____________
 
 resource "aws_elb" "iac-lb" {
   name    = "iac-lb"
-  availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  availability_zones = ["us-east-2a", "us-east-2b", "us-east-2c"]
   instances       = ["${aws_instance.iac-instance.*.id}"]
 
   health_check {
@@ -89,8 +56,6 @@ resource "aws_elb" "iac-lb" {
   connection_draining_timeout = 4
 }
 
-
-
 output "instance_ips" {
   value = ["${aws_instance.iac-instance.*.public_ip}"]
 }
@@ -98,5 +63,4 @@ output "instance_ips" {
 output "address" {
   value = "${aws_elb.iac-lb.dns_name}"
 }
-
 
