@@ -5,6 +5,7 @@
 .Ulysses-Group.plist
 *.swo
 
+creds/serviceaccount.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
