@@ -6,7 +6,7 @@ provider "aws" {
 
 
 resource "aws_instance" "iac-instance" {
-  count = 2
+  count = 4
   ami           = "ami-0f65671a86f061fcd"
   instance_type = "t2.micro"
   key_name = "iac-test"
