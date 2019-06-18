@@ -3,9 +3,9 @@ image:
   entrypoint:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    - 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}' 
-    - 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}' 
-    - 'AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}'
+    #- 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}' 
+    #- 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}' 
+    #- 'AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}'
 
 
 variables:
@@ -59,7 +59,7 @@ build:
     - master
 
 
-iapply:
+apply:
   stage: apply
   script:
     - terraform apply -input=false $PLAN
