@@ -3,9 +3,9 @@ image:
   entrypoint:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    #- 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}' 
-    #- 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}' 
-    #- 'AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}'
+    - 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}' 
+    - 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}' 
+    - 'AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}'
 
 
 variables:
@@ -34,18 +34,18 @@ validate:
 
 plan:
   stage: plan
-  script:
-    - terraform plan -out=$PLAN
-    - echo \`\`\`diff > plan.txt
-    - terraform show -no-color ${PLAN} | tee -a plan.txt
-    - echo \`\`\` >> plan.txt
-    - sed -i -e 's/  +/+/g' plan.txt
-    - sed -i -e 's/  ~/~/g' plan.txt
-    - sed -i -e 's/  -/-/g' plan.txt
-    - MESSAGE=$(cat plan.txt)
-    - >-
-      curl -X POST -g -H "PRIVATE-TOKEN: ${GITLAB_ACCESS_TOKEN}"
-      --data-urlencode "body=${MESSAGE}"
+  #script:
+    #- terraform plan -out=$PLAN
+    #- echo \`\`\`diff > plan.txt
+    #- terraform show -no-color ${PLAN} | tee -a plan.txt
+    #- echo \`\`\` >> plan.txt
+    #- sed -i -e 's/  +/+/g' plan.txt
+    #- sed -i -e 's/  ~/~/g' plan.txt
+    #- sed -i -e 's/  -/-/g' plan.txt
+    #- MESSAGE=$(cat plan.txt)
+    #- >-
+      #curl -X POST -g -H "PRIVATE-TOKEN: ${GITLAB_ACCESS_TOKEN}"
+      #--data-urlencode "body=${MESSAGE}"
 
 build:
   stage: plan
