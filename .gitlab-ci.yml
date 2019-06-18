@@ -34,8 +34,8 @@ validate:
 
 plan:
   stage: plan
-  #script:
-    #- terraform plan -out=$PLAN
+  script:
+    - terraform plan -out=$PLAN
     #- echo \`\`\`diff > plan.txt
     #- terraform show -no-color ${PLAN} | tee -a plan.txt
     #- echo \`\`\` >> plan.txt
