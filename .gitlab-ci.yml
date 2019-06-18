@@ -24,8 +24,8 @@ validate:
 
 plan:
   stage: plan
-  script:
-    - terraform plan -out "planfile"
+  #script:
+    #- terraform plan -out "planfile"
   dependencies:
     - validate
   artifacts:
@@ -34,8 +34,8 @@ plan:
 
 apply:
   stage: apply
-  script:
-    - terraform apply -input=false "planfile"
+  #script:
+    #- terraform apply -input=false "planfile"
   dependencies:
     - plan
   when: manual
