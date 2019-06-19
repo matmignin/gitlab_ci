@@ -21,7 +21,7 @@ data "terraform_remote_state" "network" {
 }
 
 resource "aws_instance" "iac-instance" {
-  count         = 2
+  count         = 3
   ami           = "ami-0f65671a86f061fcd"
   instance_type = "t2.micro"
   key_name      = "iac-test"
@@ -30,7 +30,7 @@ resource "aws_instance" "iac-instance" {
     inline = [
       "sudo apt-get -y update",
       "sudo apt-get install -y python3",
-      "sudo mkdir new_folder",
+      "sudo mkdir new_folderz",
     ]
     connection {
       host = coalesce(self.public_ip, self.private_ip)
