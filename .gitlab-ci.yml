@@ -16,8 +16,8 @@ cache:
     - .terraform
 
 before_script:
-  - terraform --version
   - cd terraform/
+  - terraform --version
   - terraform init
 
 stages:
@@ -36,7 +36,6 @@ validate:
 plan:
   stage: plan
   script:
-    - cd terraform/
     - terraform plan -out $PLAN
 
 #build:
