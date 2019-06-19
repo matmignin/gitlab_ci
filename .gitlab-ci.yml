@@ -56,11 +56,14 @@ plan:
 apply:
   stage: apply
   script:
+    - cd terraform/
+    - terraform init
     - terraform apply -input=false "planfile"
-  #dependencies:
-    #- build
+  dependencies:
+    - plan:terraform
   when: manual
   only:
-    - master
+    changes:
+      - terraform/*
 
 
