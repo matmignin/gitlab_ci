@@ -60,7 +60,7 @@ apply:
     - terraform init
     - terraform apply -input=false "planfile"
   dependencies:
-    - plan:terraform
+    - plan
   when: manual
   only:
     changes:
