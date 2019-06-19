@@ -37,16 +37,16 @@ plan:
   script:
     - terraform plan -out $PLAN
 
-build:
-  stage: plan
-  script:
-    - terraform plan -out $PLAN
-  artifacts:
-    name: plan
-    paths:
-      - $PLAN
-  only:
-    - master
+#build:
+  #stage: plan
+  #script:
+    #- terraform plan -out $PLAN
+  #artifacts:
+    #name: plan
+    #paths:
+      #- $PLAN
+  #only:
+    #- master
 
 
 apply:
