@@ -53,8 +53,8 @@ apply:
   stage: apply
   script:
     - terraform apply -input=false $PLAN
-  dependencies:
-    - build
+  #dependencies:
+    #- build
   when: manual
   only:
     - master
