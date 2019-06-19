@@ -6,7 +6,6 @@ image:
 
 
 variables:
-  PLAN: envs/plan
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   GITLAB_ACCESS_TOKEN: $GITLAB_ACCESS_TOKEN
@@ -29,23 +28,27 @@ validate:
   stage: validate
   script:
     - terraform validate
-  only:
-    - branches
+  artifacts:
+    name: plan
+    paths:
+      - terraform/planfile
+  #only:
+    #- branches
 
 
 plan:
   stage: plan
   script:
-    - terraform plan -out $PLAN
+    - terraform plan -out "planfile"
 
-#build:
+build:
   #stage: plan
   #script:
-    #- terraform plan -out $PLAN
+    #- terraform plan -out "planfile"
   #artifacts:
     #name: plan
     #paths:
-      #- $PLAN
+      #- "planfile"
   #only:
     #- master
 
@@ -53,7 +56,7 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform apply -input=false $PLAN
+    - terraform apply -input=false "planfile"
   #dependencies:
     #- build
   when: manual
