@@ -17,6 +17,7 @@ cache:
 
 before_script:
   - terraform --version
+  - cd terraform/
   - terraform init
 
 stages:
