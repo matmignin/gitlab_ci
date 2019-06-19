@@ -62,8 +62,8 @@ apply:
   dependencies:
     - plan
   when: manual
-  only:
-    changes:
-      - terraform/*
+  #only:
+    #changes:
+      #- terraform/*
 
 
