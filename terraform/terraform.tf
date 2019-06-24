@@ -13,24 +13,22 @@ provider "aws" {
 }
 
 resource "aws_instance" "iac-instance" {
-  count         = 1
+  count         = 2
   ami           = "ami-0f65671a86f061fcd"
   instance_type = "t2.micro"
-  key_name      = "iac-test"
+  key_name = "iac-test"
 
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get -y update",
       "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
-      "sudo apt-get install -yqq python3",
-      "ssh-add ~/.ssh/id_rsa",
+      "sudo apt-get install -y python",
       "sudo mkdir foldasz",
     ]
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
       user = "ubuntu"
-      private_key = file("/Users/mat/.ssh/iac-test")
     }
   }
   tags = {
@@ -73,4 +71,5 @@ output "instance_ips" {
 output "address" {
   value = aws_elb.iac-lb.dns_name
 }
+
 
