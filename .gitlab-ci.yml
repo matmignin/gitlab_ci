@@ -39,7 +39,8 @@ validate:
 plan:
   stage: plan
   script:
-    - terraform plan -out "planfile"
+    #- terraform plan -out "planfile"
+    - terraform plan
 
 #build:
   #stage: plan
@@ -60,7 +61,7 @@ apply:
     #- terraform apply -input=false "planfile"
   #dependencies:
     #- plan
-  when: manual
+  #when: manual
   #only:
     #changes:
       #- terraform/*
