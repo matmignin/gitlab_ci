@@ -22,13 +22,15 @@ resource "aws_instance" "iac-instance" {
     inline = [
       "sudo apt-get -y update",
       "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
-      "sudo apt-get install -y python",
+      "sudo apt-get install -yqq python3",
+      "ssh-add ~/.ssh/id_rsa",
       "sudo mkdir foldasz",
     ]
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
       user = "ubuntu"
+      #private_key "~/.ssh/id_rsa"
     }
   }
   tags = {
