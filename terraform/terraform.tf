@@ -3,21 +3,13 @@ terraform {
   backend "s3" {
     bucket = "iac-bucket2"
     key    = "terraform/terraform.tfstate"
+    region = "us-east-2"
   }
 }
 
 # AWS Provider
 provider "aws" {
   region = "us-east-2"
-}
-
-# Import State global From Remote S3 Bucket
-data "terraform_remote_state" "network" {
-  backend = "s3"
-  config = {
-    bucket = "iac-bucket2"
-    key = "terraform/terraform.tfstate"
-  }
 }
 
 resource "aws_instance" "iac-instance" {
@@ -29,7 +21,9 @@ resource "aws_instance" "iac-instance" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get -y update",
-      "sudo apt-get install -y python3",
+       # "apt-get update",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
+      "sudo apt-get install -y python",
       "sudo mkdir new_folderz",
     ]
     connection {
