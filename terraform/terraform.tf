@@ -1,3 +1,7 @@
+variable "bucket_name" {
+  description = "the name to give the bucket"jj<S-F5>
+
+
 # TerraForm Backend
 terraform {
   backend "s3" {
@@ -21,7 +25,6 @@ resource "aws_instance" "iac-instance" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get -y update",
-       # "apt-get update",
       "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
       "sudo apt-get install -y python",
       "sudo mkdir new_folderz",
@@ -73,3 +76,6 @@ output "address" {
   value = aws_elb.iac-lb.dns_name
 }
 
+output "bucket" {
+  value = s3-remote-state-bucket.bucket_id
+}
