@@ -56,7 +56,7 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform apply 
+    - terraform apply -auto-approve
     #- terraform apply -input=false "planfile"
   #dependencies:
     #- plan
