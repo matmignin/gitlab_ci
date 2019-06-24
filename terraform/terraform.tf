@@ -1,5 +1,5 @@
-variable "bucket_name" {
-  description = "the name to give the bucket"jj<S-F5>
+#variable "bucket_name" {
+  #description = "the name to give the bucket"jj<S-F5>
 
 
 # TerraForm Backend
@@ -76,6 +76,6 @@ output "address" {
   value = aws_elb.iac-lb.dns_name
 }
 
-output "bucket" {
-  value = s3-remote-state-bucket.bucket_id
-}
+#output "bucket" {
+  #value = s3-remote-state-bucket.bucket_id
+#}

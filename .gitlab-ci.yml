@@ -56,7 +56,7 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform init
+    - terraform apply 
     #- terraform apply -input=false "planfile"
   #dependencies:
     #- plan
