@@ -30,7 +30,7 @@ resource "aws_instance" "iac-instance" {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
       user = "ubuntu"
-      #private_key "~/.ssh/id_rsa"
+      private_key = "file("/Users/mat/.ssh/iac-test.pem")"
     }
   }
   tags = {
