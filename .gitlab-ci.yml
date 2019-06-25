@@ -7,8 +7,10 @@ image:
 
 variables:
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+  #AWS_ACCESS_KEY_ID: "AKIAWJVGSTIS2F36Y4EP"
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-  GITLAB_ACCESS_TOKEN: $GITLAB_ACCESS_TOKEN
+  #AWS_SECRET_ACCESS_KEY: "irSXU9pbBLDiD5np9vnMgKAUz6UtYV2Ub5EIfY3Z"
+  GITLAB_ACCESS_TOKEN: "QKLUtkX_wugU5gMkwYsz"
 
 cache:
   paths:
@@ -17,7 +19,8 @@ cache:
 before_script:
   - cd terraform/
   - terraform --version
-  - terraform init
+  #- terraform init -input=false -backend-config=access_key=AWS_ACCESS_KEY_ID -backend-config=secret_key=AWS_SECRET_ACCESS_KEY
+  - terraform init -input=false 
 
 stages:
   - validate
@@ -39,8 +42,8 @@ validate:
 plan:
   stage: plan
   script:
-    #- terraform plan -out "planfile"
-    - terraform plan
+    - terraform plan -out "planfile"
+    #- terraform plan
 
 #build:
   #stage: plan
@@ -57,10 +60,10 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform apply -auto-approve
-    #- terraform apply -input=false "planfile"
-  #dependencies:
-    #- plan
+    #- terraform apply -auto-approve
+    - terraform apply -input=false "planfile"
+  dependencies:
+    - plan
   #when: manual
   #only:
     #changes:
