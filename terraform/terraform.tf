@@ -22,19 +22,19 @@ resource "aws_instance" "iac-instance" {
   instance_type = "t2.micro"
   key_name = "iac-test"
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt-get -y update",
-      "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
-      "sudo apt-get install -y python",
-      "sudo mkdir foldasz",
-    ]
-    connection {
-      host = coalesce(self.public_ip, self.private_ip)
-      type = "ssh"
-      user = "ubuntu"
-    }
-  }
+  #provisioner "remote-exec" {
+    #inline = [
+      #"sudo apt-get -y update",
+      #"sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
+      #"sudo apt-get install -y python",
+      #"sudo mkdir foldasz",
+    #]
+    #connection {
+      #host = coalesce(self.public_ip, self.private_ip)
+      #type = "ssh"
+      #user = "ubuntu"
+    #}
+  #}
   tags = {
     Name = "iac-${count.index}"
   }
