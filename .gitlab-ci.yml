@@ -1,8 +1,8 @@
-image:
-  name: hashicorp/terraform:light
-  entrypoint:
-    - '/usr/bin/env'
-    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+image:ubuntu
+  #name: hashicorp/terraform:light
+  #entrypoint:
+    #- '/usr/bin/env'
+    #- 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 
 variables:
@@ -18,6 +18,7 @@ cache:
 
 before_script:
   - cd terraform/
+  - 
   - terraform --version
   #- terraform init -input=false -backend-config=access_key=AWS_ACCESS_KEY_ID -backend-config=secret_key=AWS_SECRET_ACCESS_KEY
   - terraform init -input=false 
