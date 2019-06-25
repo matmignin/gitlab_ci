@@ -22,8 +22,10 @@ cache:
 
 before_script:
   - rm -rf terraform/.terraform
-  - echo “$SSH_KEY_PATH” > /root/.ssh/id_rsa
-  - chmod 600 /root/.ssh/id_rsa
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo “$SSH_KEY_PATH” > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
     apt-get -y update
   - DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
   - apt-get install -y python3
