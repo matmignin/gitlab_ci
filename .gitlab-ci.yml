@@ -23,8 +23,8 @@ before_script:
   - rm -rf terraform/.terraform
   - echo “$SSH_KEY_PATH” > /root/.ssh/id_rsa
   - chmod 600 /root/.ssh/id_rsa
-  - sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
-  - sudo apt-get upgrade terraform -y
+  - DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
+  - apt-get upgrade terraform -y
   #- 'which ssh-agent || ( apt-get install -qq openssh-client )'
   #- eval $(ssh-agent -s) 
   #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add 
