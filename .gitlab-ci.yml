@@ -1,6 +1,6 @@
 image:  
-  #name: rflume/terraform-aws-ansible:latest
-  name: hashicorp/terraform:light
+  name: rflume/terraform-aws-ansible:latest
+  #name: hashicorp/terraform:light
   entrypoint:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
@@ -26,8 +26,10 @@ before_script:
   - chmod 700 ~/.ssh
   - echo “$SSH_KEY_PATH” > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
-  - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
-  - apt-get install -yqq python3
+  - apk update
+  - apk add -u python3
+  #- apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
+  #- apt-get install -yqq python3
   #- 'which ssh-agent || ( apt-get install -qq openssh-client )'
   #- eval $(ssh-agent -s) 
   #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add 
