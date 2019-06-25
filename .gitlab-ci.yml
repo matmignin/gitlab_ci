@@ -15,9 +15,9 @@ variables:
   GITLAB_ACCESS_TOKEN: "QKLUtkX_wugU5gMkwYsz"
   SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
 
-cache:
-  paths:
-    - terraform/.terraform
+#cache:
+  #paths:
+    #- terraform/.terraform
 
 before_script:
   - rm -rf terraform/.terraform
@@ -30,7 +30,7 @@ before_script:
   #- chmod 700 ~/.ssh
   #- cd terraform/
   #- terraform --version
-  - terraform init -input=false 
+  #- terraform init -input=false 
 
 
 validate:
@@ -39,10 +39,10 @@ validate:
     - cd terraform
     - terraform init
     - terraform validate
-  artifacts:
-    name: plan
-    paths:
-      - terraform/planfile
+  #artifacts:
+    #name: plan
+    #paths:
+      #- terraform/planfile
   #only:
     #- branches
 

@@ -41,17 +41,6 @@ resource "aws_instance" "iac-instance" {
   }
 }
 
-# Import State "global" From Remote S3 Bucket
-#data “terraform_remote_state” “network” {
-  #backend = “s3”
-  #config {
-    #region = "us-east-2"
-    #bucket = "iac-bucket2"
-    #key = "iac-test"
-  #}
-#}
-
-
 
 #   __________________  Load Balancer stuff _____________
 
