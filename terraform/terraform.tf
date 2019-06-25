@@ -30,7 +30,7 @@ resource "aws_instance" "iac-instance" {
       "sudo mkdir foldasz",
     ]
     connection {
-      host = "coalesce(self.public_ip, self.private_ip)"
+      host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
       user = "ubuntu"
     }

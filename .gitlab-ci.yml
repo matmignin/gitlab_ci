@@ -1,8 +1,8 @@
 image:  
   name: rflume/terraform-aws-ansible:latest
-  #entrypoint:
-    #- '/usr/bin/env'
-    #- 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 stages:
   - validate
@@ -15,9 +15,9 @@ variables:
   GITLAB_ACCESS_TOKEN: "QKLUtkX_wugU5gMkwYsz"
   SSH_KEY_PATH: $SSH_KEY_PATH
 
-#cache:
-  #paths:
-    #- terraform/.terraform
+cache:
+  paths:
+    - terraform/.terraform
 
 before_script:
   - rm -rf terraform/.terraform
@@ -30,7 +30,7 @@ before_script:
   #- chmod 700 ~/.ssh
   - cd terraform/
   - terraform --version
-  - terraform init -input=false 
+  - terraform init 
 
 
 validate:
