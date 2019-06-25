@@ -7,9 +7,7 @@ image:
 
 variables:
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-  #AWS_ACCESS_KEY_ID: "AKIAWJVGSTIS2F36Y4EP"
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-  #AWS_SECRET_ACCESS_KEY: "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"
   GITLAB_ACCESS_TOKEN: "QKLUtkX_wugU5gMkwYsz"
   SSH_PRIVATE_KEY: "$SSH_PRIVATE_KEY"
 
@@ -18,12 +16,12 @@ cache:
     - .terraform
 
 before_script:
-  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-  - eval $(ssh-agent -s) 
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add 
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  - cd terraform/
+  #- 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  #- eval $(ssh-agent -s) 
+  #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add 
+  #- mkdir -p ~/.ssh
+  #- chmod 700 ~/.ssh
+  #- cd terraform/
   #- terraform --version
   #- terraform init -input=false -backend-config=access_key=AWS_ACCESS_KEY_ID -backend-config=secret_key=AWS_SECRET_ACCESS_KEY
   - terraform init -input=false 
