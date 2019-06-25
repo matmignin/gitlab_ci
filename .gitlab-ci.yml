@@ -1,8 +1,8 @@
-image: ubuntu
-  #name: hashicorp/terraform:light
-  #entrypoint:
-    #- '/usr/bin/env'
-    #- 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+image: 
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 
 variables:
@@ -17,10 +17,10 @@ cache:
     - .terraform
 
 before_script:
-  #- cd terraform/
-  #- which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )
-  #- eval $(ssh-agent -s) 
-  #- echo "$PEM" | tr -d '\r' | ssh-add - > /dev/null
+  - cd terraform/
+  - which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )
+  - eval $(ssh-agent -s) 
+  - echo "$PEM" | tr -d '\r' | ssh-add - > /dev/null
   - terraform --version
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
