@@ -20,7 +20,7 @@ before_script:
   - cd terraform/
   - which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )
   - eval $(ssh-agent -s) 
-  - echo "$PEM" | tr -d '\r' | ssh-add - > /dev/null
+  - ssh-add <(echo "$PEM")
   - terraform --version
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
