@@ -1,4 +1,4 @@
-image:ubuntu
+image: ubuntu
   #name: hashicorp/terraform:light
   #entrypoint:
     #- '/usr/bin/env'
@@ -17,9 +17,14 @@ cache:
     - .terraform
 
 before_script:
-  - cd terraform/
-  - 
+  #- cd terraform/
+  #- which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )
+  #- eval $(ssh-agent -s) 
+  #- echo "$PEM" | tr -d '\r' | ssh-add - > /dev/null
   - terraform --version
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+            
   #- terraform init -input=false -backend-config=access_key=AWS_ACCESS_KEY_ID -backend-config=secret_key=AWS_SECRET_ACCESS_KEY
   - terraform init -input=false 
 
