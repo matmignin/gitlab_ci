@@ -9,13 +9,14 @@ variables:
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   GITLAB_ACCESS_TOKEN: "QKLUtkX_wugU5gMkwYsz"
-  SSH_PRIVATE_KEY: "$SSH_PRIVATE_KEY"
+  SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
 
 cache:
   paths:
-    - .terraform
+    - terraform/.terraform
 
 before_script:
+  - rm -rf terraform/.terraform
   #- 'which ssh-agent || ( apt-get install -qq openssh-client )'
   #- eval $(ssh-agent -s) 
   #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add 
