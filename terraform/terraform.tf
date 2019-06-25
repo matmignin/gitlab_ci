@@ -29,9 +29,8 @@ resource "aws_instance" "iac-instance" {
       "sudo apt-get install -y python",
       "sudo mkdir foldasz"
     ]
-
-  connection {
-      host = coalesce(self.public_ip, self.private_ip)
+    connection {
+      host = "coalesce(self.public_ip, self.private_ip)"
       type = "ssh"
       user = "ubuntu"
     }
