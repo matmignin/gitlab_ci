@@ -26,7 +26,7 @@ before_script:
   - chmod 700 ~/.ssh
   - echo “$SSH_KEY_PATH” > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
-    apt-get -y update
+  - apt-get -y update
   - DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
   - apt-get install -y python3
   #- 'which ssh-agent || ( apt-get install -qq openssh-client )'
