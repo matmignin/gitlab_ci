@@ -11,6 +11,7 @@ variables:
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   #AWS_SECRET_ACCESS_KEY: "irSXU9pbBLDiD5np9vnMgKAUz6UtYV2Ub5EIfY3Z"
   GITLAB_ACCESS_TOKEN: "QKLUtkX_wugU5gMkwYsz"
+  PEM: "$PEM"
 
 cache:
   paths:
@@ -20,7 +21,7 @@ before_script:
   - cd terraform/
   - 'which ssh-agent || ( apt-get install -qq openssh-client )'
   - eval $(ssh-agent -s) 
-  - ssh-add < (echo "$PEM") 
+  - ssh-add < echo "$PEM" 
   - terraform --version
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
