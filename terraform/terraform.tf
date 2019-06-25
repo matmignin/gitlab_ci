@@ -27,7 +27,7 @@ resource "aws_instance" "iac-instance" {
       "sudo apt-get -y update",
       "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
       "sudo apt-get install -y python",
-      "sudo mkdir foldasz"
+      "sudo mkdir foldasz",
     ]
     connection {
       host = "coalesce(self.public_ip, self.private_ip)"
