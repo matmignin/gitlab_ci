@@ -43,8 +43,8 @@ validate:
   stage: validate
   script:
     - cd terraform
-    - terraform validate
     - terraform init
+    - terraform validate
   #artifacts:
     #name: plan
     #paths:
