@@ -28,9 +28,9 @@ before_script:
   #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add 
   #- mkdir -p ~/.ssh
   #- chmod 700 ~/.ssh
-  #- cd terraform/
-  #- terraform --version
-  #- terraform init -input=false 
+  - cd terraform/
+  - terraform --version
+  - terraform init -input=false 
 
 
 validate:
