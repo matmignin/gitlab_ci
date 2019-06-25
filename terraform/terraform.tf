@@ -1,3 +1,6 @@
+
+
+
 # TerraForm Backend
 terraform {
   backend "s3" {
@@ -6,6 +9,7 @@ terraform {
     region = "us-east-2"
   }
 }
+
 
 # AWS Provider
 provider "aws" {
@@ -23,7 +27,7 @@ resource "aws_instance" "iac-instance" {
       "sudo apt-get -y update",
       "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
       "sudo apt-get install -y python",
-      "sudo mkdir foldasz",
+      "sudo mkdir foldasz"
     ]
     connection {
       host = coalesce(self.public_ip, self.private_ip)
@@ -36,6 +40,18 @@ resource "aws_instance" "iac-instance" {
     Name = "iac-${count.index}"
   }
 }
+
+# Import State "global" From Remote S3 Bucket
+#data “terraform_remote_state” “network” {
+  #backend = “s3”
+  #config {
+    #region = "us-east-2"
+    #bucket = "iac-bucket2"
+    #key = "iac-test"
+  #}
+#}
+
+
 
 #   __________________  Load Balancer stuff _____________
 
