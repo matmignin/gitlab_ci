@@ -7,6 +7,7 @@
 
 ## Project layout                                    
 ### File Structure
+
 ├── ansible-provisioning *stores ansible roldes that are module independent*
 │ └── roles
 │   └── my-global-role
@@ -44,6 +45,9 @@
 │
 ├── .gitlab-ci.yml  *defines gitlab pipeline*
 └── README.md
+
+
+
 
 - terraform is flexible with layout, but ansible is not
   - The SWS credentials will be set up as enfironment Variables
