@@ -8,4 +8,5 @@
 
 - terraform is flexible with layout, but ansible is not
   - The SWS credentials will be set up as enfironment Variables
+  - yml file will set up ssh,install python3, and init terraform
 ~
