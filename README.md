@@ -5,8 +5,7 @@
   - GitLab CI - automate the execution of terraform with GitLab CI pipelines
   - Docker
 
-
-- terraform is flexible with layout, but ansible is not
+# Steps
   - The SWS credentials will be set up as enfironment Variables
   - yml file will set up ssh,install python3, and init terraform
 ~
